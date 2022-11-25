@@ -10,6 +10,7 @@ const useVideos = (DefaultSearchKeyword) =>{
     },[DefaultSearchKeyword])
 
     const Search = async (term) => {
+        try{
         const response = await youtube.get('/search', {
              params:{
                  q:term
@@ -17,7 +18,10 @@ const useVideos = (DefaultSearchKeyword) =>{
          });
             
             setVideo(response.data.items)
-            
+        }catch(e){
+            console.log(e.response);
+        }
+
          
         
          
